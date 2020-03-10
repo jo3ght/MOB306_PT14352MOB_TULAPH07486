@@ -10,7 +10,7 @@ import {
   ImageBackground,
 } from "react-native";
 
-export default function bookItem({ item, handleDelete, Username }) {
+export default function bookItem({ item, handleDelete,showEditModal }) {
   const [openModal, setOpenModal] = useState(false);
 
   const alerDelete = (id, handleDelete) => {
@@ -38,14 +38,14 @@ export default function bookItem({ item, handleDelete, Username }) {
       <View style={style.line}>
         <View style={style.row}>
           <View style={style.images}>
-            <Image style={style.images} source={{ uri: item.image }} />
+            <Image style={style.images} source={{ uri: item.imagebook }} />
           </View>
 
           <View style={style.info}>
             <Text style={style.name}>{`${item.name}`}</Text>
             <Text>{`Category: ${item.category}`}</Text>
-            <Text>{`Chapter: ${item.totalChapters}`}</Text>
-            <Text>{`Full: ${item.isFull ? "Yes" : "No"}`}</Text>
+            <Text>{`Chapter: ${item.chapters}`}</Text>
+            <Text>{`Full: ${item.full ? "Yes" : "No"}`}</Text>
 
             <View style={style.row2}>
               <TouchableOpacity
@@ -53,6 +53,12 @@ export default function bookItem({ item, handleDelete, Username }) {
                 onPress={() => setOpenModal(true)}
               >
                 <Text style={style.txt}>Detail</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={style.btnEdit}
+                onPress={() => showEditModal(item.id, showEditModal)}
+              >
+                <Text style={style.txt}>Edit</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={style.btnDelete}
@@ -77,7 +83,7 @@ export default function bookItem({ item, handleDelete, Username }) {
               }}
             >
               <View style={style.bookCoverView}>
-                <Image style={style.bookCover} source={{ uri: item.image }} />
+                <Image style={style.bookCover} source={{ uri: item.imagebook }} />
                 <Text style={style.txtCover}>{item.name}</Text>
               </View>
             </ImageBackground>
@@ -100,7 +106,7 @@ export default function bookItem({ item, handleDelete, Username }) {
                       "https://img.icons8.com/dusk/64/000000/overview-pages-1.png"
                   }}
                 />
-                <Text style={style.txtCate}>Chapter: {item.totalChapters}</Text>
+                <Text style={style.txtCate}>Chapter: {item.chapters}</Text>
 
                 <Image
                   style={style.icon}
@@ -118,7 +124,7 @@ export default function bookItem({ item, handleDelete, Username }) {
               style={style.btnGoBack}
               onPress={() => setOpenModal(false)}
             >
-              <Text numberOfLines={2} style={style.txtGoBack}>
+              <Text style={style.txtGoBack}>
                 Back
               </Text>
             </TouchableOpacity>
@@ -143,6 +149,7 @@ const style = StyleSheet.create({
     width: 50
   },
   txtCate: {
+    marginTop:8,
     fontSize: 15
   },
   txtGoBack: {
@@ -231,15 +238,25 @@ const style = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 1
   },
+  btnEdit: {
+    marginLeft: 16,
+    width: 54,
+    alignItems: "center",
+    borderColor: "#99B898",
+    backgroundColor: "#99B898",
+    color: "white",
+    borderRadius: 30,
+    borderWidth: 1
+  },
   btnDelete: {
     width: 54,
     alignItems: "center",
-    borderColor: "#da0a0a",
-    backgroundColor: "#da0a0a",
+    borderColor: "#E84A5F",
+    backgroundColor: "#E84A5F",
     color: "white",
     borderRadius: 30,
     borderWidth: 1,
-    marginLeft: 16
+    marginLeft: 16,
   },
   row2: {
     color: "white",

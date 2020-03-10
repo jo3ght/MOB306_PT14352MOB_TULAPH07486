@@ -1,5 +1,6 @@
 {
   "expo": {
+    "entryPoint":"./App.js",
     "name": "Tulaph07486_Assignment",
     "slug": "Tulaph07486_Assignment",
     "privacy": "public",

@@ -54,7 +54,7 @@ export default function userProfile() {
             keyboardType="default"
             onChangeText={value => setAddName(value)}
           />
-          <Text style={style.titleInput}>Full Name: </Text>
+          <Text style={style.titleInput}>Age: </Text>
 
           <TextInput
             keyboardType="numeric"
